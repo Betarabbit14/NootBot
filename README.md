@@ -12,10 +12,13 @@ I intend to use NootBot mainly as a music bot, but a chat bot might be nessisary
 
 ### Currently Learning 
 
-> C# is, as the title suggests, the main way I am coding NootBot.
-> GoogleAPI for searches within Discord
-> YoutubeAPI for music searching
-> ffmpeg for stream downloading and converting
+> > C# is, as the title suggests, the main way I am coding NootBot.
+> >
+> > GoogleAPI for searches within Discord
+> >
+> > YoutubeAPI for music searching
+> >
+> > ffmpeg for stream downloading and converting
 > 
 > :) Thats it for now
 >
