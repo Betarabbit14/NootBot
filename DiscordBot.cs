@@ -109,7 +109,7 @@ namespace ConsoleApp1
             client.ExecuteAndWait(async () =>
             {
                 //do NOT LEAK MY TOKEN I WILL KILL U
-                await client.Connect("Mjk3OTEzMzMyMzk0ODg1MTIw.C8JXoQ._5zvOO639GYCfqbijzd6qoqN1Gw", TokenType.Bot);
+                await client.Connect("MY_TOKEN", TokenType.Bot);
             });
         }
 
