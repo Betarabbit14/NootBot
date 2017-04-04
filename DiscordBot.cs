@@ -1,4 +1,4 @@
-﻿using Discord;
+using Discord;
 using Discord.Audio;
 using Discord.Commands;
 using NAudio;
@@ -60,34 +60,46 @@ namespace ConsoleApp1
                 });
 
 //========//audio commands
-            commands.CreateCommand("pls").Do(async (e) =>
-            {
-                await e.Channel.SendMessage("Playing: Beep Beep Sheep.mp3");
-                var vChannel = e.Server.VoiceChannels.FirstOrDefault(); // Finds the first VoiceChannel on the server 'SMIC'
-                var vClient = await client.GetService<AudioService>()
-                        .Join(vChannel);
-                var channelCount = client.GetService<AudioService>().Config.Channels; // Get the number of AudioChannels our AudioService has been configured to use.
-                var OutFormat = new WaveFormat(48000, 16, channelCount); // Create a new Output Format, using the spec that Discord will accept, and with the number of channels that our client supports.
-                using (var MP3Reader = new Mp3FileReader("a.mp3")) // Create a new Disposable MP3FileReader, to read audio from the filePath parameter
-                using (var resampler = new MediaFoundationResampler(MP3Reader, OutFormat)) // Create a Disposable Resampler, which will convert the read MP3 data to PCM, using our Output Format
+            commands.CreateCommand("playA")
+                .Alias(new string[] {"pA"})
+                .Description("Plays local file a.mp3")
+                .Do(async (e) =>
                 {
-                    resampler.ResamplerQuality = 60; // Set the quality of the resampler to 60, the highest quality
-                    int blockSize = OutFormat.AverageBytesPerSecond / 50; // Establish the size of our AudioBuffer
-                    byte[] buffer = new byte[blockSize];
-                    int byteCount;
-
-                    while ((byteCount = resampler.Read(buffer, 0, blockSize)) > 0) // Read audio into our buffer, and keep a loop open while data is present
+                    await e.Channel.SendMessage("Playing: Beep Beep Sheep");
+                    var vChannel = e.Server.VoiceChannels.FirstOrDefault(); // Finds the first VoiceChannel on the server 'SMIC'
+                    var vClient = await client.GetService<AudioService>()
+                        .Join(vChannel);
+                    var channelCount = client.GetService<AudioService>().Config.Channels; // Get the number of AudioChannels our AudioService has been configured to use.
+                    var OutFormat = new WaveFormat(48000, 16, channelCount); // Create a new Output Format, using the spec that Discord will accept, and with the number of channels that our client supports.
+                    using (var MP3Reader = new Mp3FileReader("a.mp3")) // Create a new Disposable MP3FileReader, to read audio from the filePath parameter
+                    using (var resampler = new MediaFoundationResampler(MP3Reader, OutFormat)) // Create a Disposable Resampler, which will convert the read MP3 data to PCM, using our Output Format
                     {
-                        if (byteCount < blockSize)
+                        resampler.ResamplerQuality = 60; // Set the quality of the resampler to 60, the highest quality
+                        int blockSize = OutFormat.AverageBytesPerSecond / 50; // Establish the size of our AudioBuffer
+                        byte[] buffer = new byte[blockSize];
+                        int byteCount;
+
+                        while ((byteCount = resampler.Read(buffer, 0, blockSize)) > 0) // Read audio into our buffer, and keep a loop open while data is present
                         {
-                            // Incomplete Frame
-                            for (int i = byteCount; i < blockSize; i++)
-                                buffer[i] = 0;
+                            if (byteCount < blockSize)
+                            {
+                                // Incomplete Frame
+                                for (int i = byteCount; i < blockSize; i++)
+                                    buffer[i] = 0;
+                            }
+                            vClient.Send(buffer, 0, blockSize); // Send the buffer to Discord
                         }
-                        vClient.Send(buffer, 0, blockSize); // Send the buffer to Discord
                     }
-                }
-            });
+                    await vClient.Disconnect();
+                });
+            commands.CreateCommand("disconnect")
+                .Alias(new string[] { "s", "stop" })
+                .Description("Disconnects NootBot from VC")
+                .Do(async (e) =>
+                {
+                    await e.Channel.SendMessage("Cy@ boi");
+                    //Doesn't disconnect by command yet.
+                });
 
 //========//event actions or announcements
             client.UserJoined += async (s, e) =>
@@ -109,7 +121,7 @@ namespace ConsoleApp1
             client.ExecuteAndWait(async () =>
             {
                 //do NOT LEAK MY TOKEN I WILL KILL U
-                await client.Connect("MY_TOKEN", TokenType.Bot);
+                await client.Connect("SECRET_TOKEN", TokenType.Bot);
             });
         }
 
