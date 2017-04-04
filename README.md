@@ -1,7 +1,7 @@
 ![Alt Text](https://github.com/SMIC-ComputerClub/NootBot/blob/master/noot.jpg)
 
 # NootBot
-A Discrod Bot written in C#. Uses many APIs; arguably, more than anyone needs, objectively, more than anyone wants.
+A Discord Bot written in C#. Uses many APIs; arguably, more than anyone needs, objectively, more than anyone wants.
 
 I've been using Discord for quite a while now and decided that it'll be cool to make my own bot.
 Since the project im currently working on is frozen due to classified issues, this will be a pet project.
