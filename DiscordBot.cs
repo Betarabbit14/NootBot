@@ -98,7 +98,7 @@ namespace ConsoleApp1
                 .Do(async (e) =>
                 {
                     await e.Channel.SendMessage("Cy@ boi");
-                    //Doesn't disconnect by command yet.
+                    //doesn't disconnect by command yet
                 });
 
 //========//event actions or announcements
