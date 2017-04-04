@@ -1,3 +1,5 @@
+![Alt Text](https://github.com/SMIC-ComputerClub/NootBot/blob/master/nootbot.png)
+
 # NootBot
 A Discrod Bot written in C#. Uses many APIs; arguably, more than anyone needs, objectively, more than anyone wants.
 
