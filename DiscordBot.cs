@@ -62,7 +62,7 @@ namespace ConsoleApp1
 //========//audio commands
             commands.CreateCommand("pls").Do(async (e) =>
             {
-                await e.Channel.SendMessage("Playing: Beep Beep Sheep");
+                await e.Channel.SendMessage("Playing: Beep Beep Sheep.mp3");
                 var vChannel = e.Server.VoiceChannels.FirstOrDefault(); // Finds the first VoiceChannel on the server 'SMIC'
                 var vClient = await client.GetService<AudioService>()
                         .Join(vChannel);
