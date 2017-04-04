@@ -1,23 +1,22 @@
 # NootBot
 A Discrod Bot written in C#. Uses many APIs; arguably, more than anyone needs, objectively, more than anyone wants.
 
+I've been using Discord for quite a while now and decided that it'll be cool to make my own bot.
+Since the project im currently working on is frozen due to classified issues, this will be a pet project.
+
+
 What is NootBot?
-====================
-
-A Second Level Header
 ---------------------
+A bot generally has a few different purposes in Discord: chat, music, permissions, intergrations
+I intend to use NootBot mainly as a music bot, but a chat bot might be nessisary for me to learn Discord.Net
 
-Now is the time for all good men to come to
-the aid of their country. This is just a
-regular paragraph.
+### Currently Learning 
 
-The quick brown fox jumped over the lazy
-dog's back.
-
-### Header 3
-
-> This is a blockquote.
+> C# is, as the title suggests, the main way I am coding NootBot.
+> GoogleAPI for searches within Discord
+> YoutubeAPI for music searching
+> ffmpeg for stream downloading and converting
 > 
-> This is the second paragraph in the blockquote.
+> :) Thats it for now
 >
-> ## This is an H2 in a blockquote
+> ## KMS : ^)
