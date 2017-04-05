@@ -1,4 +1,4 @@
-﻿using Discord;
+using Discord;
 using Discord.Audio;
 using Discord.Commands;
 using NAudio;
@@ -9,23 +9,25 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading;
 
-namespace ConsoleApp1
+namespace NootBot
 {
     public class DiscordBot
     {
         DiscordClient client;
         CommandService commands;
+        string tokenString;
 
-        public DiscordBot()
+        public DiscordBot(string token)
         {
-//========//constructor
+            //========//constructor
             client = new DiscordClient(input =>
             {
                 input.LogLevel = LogSeverity.Info;
                 input.LogHandler = Log;
+                tokenString = token;
             });
 
-//========//client command prefix creation setup
+            //========//client command prefix creation setup
             client.UsingCommands(input =>
             {
                 input.PrefixChar = '>';
@@ -33,7 +35,7 @@ namespace ConsoleApp1
                 input.AllowMentionPrefix = true;
             });
 
-//========//client audio service creation setup
+            //========//client audio service creation setup
             client.UsingAudio(input =>
             {
                 input.Mode = AudioMode.Outgoing;
@@ -46,7 +48,7 @@ namespace ConsoleApp1
                 .Description("Be mean to the bot and make her feel bad.")
                 .Do(async e =>
                 {
-                    await e.Channel.SendMessage("<:dude:297615426672918538> :gun: gotchu");
+                    await e.Channel.SendMessage("<:dude:297615426672918538> :gun: gotchu~");
                 });
 
             client.GetService<CommandService>().CreateCommand("greet") //create command greet
@@ -59,9 +61,9 @@ namespace ConsoleApp1
                     //sends a message to channel with the given text
                 });
 
-//========//audio commands
+            //========//audio commands
             commands.CreateCommand("playA")
-                .Alias(new string[] {"pA"})
+                .Alias(new string[] { "pA" })
                 .Description("Plays local file a.mp3")
                 .Do(async (e) =>
                 {
@@ -90,6 +92,7 @@ namespace ConsoleApp1
                             vClient.Send(buffer, 0, blockSize); // Send the buffer to Discord
                         }
                     }
+                    await e.Channel.SendMessage("Song done, cy@.");
                     await vClient.Disconnect();
                 });
             commands.CreateCommand("disconnect")
@@ -101,10 +104,10 @@ namespace ConsoleApp1
                     //Doesn't disconnect by command yet.
                 });
 
-//========//event actions or announcements
+            //========//event actions or announcements
             client.UserJoined += async (s, e) =>
             {
-                var channel = e.Server.FindChannels("general",ChannelType.Text).FirstOrDefault();
+                var channel = e.Server.FindChannels("general", ChannelType.Text).FirstOrDefault();
                 var user = e.User;
                 await channel.SendMessage(String.Format("Ayy, {0} has joined the channel!", user.Name));
             };
@@ -116,12 +119,10 @@ namespace ConsoleApp1
                 await channel.SendMessage(String.Format("RIP, {0} has left the channel.", user.Name));
             };
 
-
-
             client.ExecuteAndWait(async () =>
             {
                 //do NOT LEAK MY TOKEN I WILL KILL U
-                await client.Connect("MY_TOKEN", TokenType.Bot);
+                await client.Connect(tokenString, TokenType.Bot);
             });
         }
 
@@ -130,11 +131,6 @@ namespace ConsoleApp1
             Console.WriteLine(e.Message);
         }
 
-        public void SendAudio(string filePath)
-        {
-            
-
-        }
 
     }
 }
