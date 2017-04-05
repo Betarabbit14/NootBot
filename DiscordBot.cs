@@ -19,7 +19,7 @@ namespace NootBot
 
         public DiscordBot(string token)
         {
-            //========//constructor
+//========//constructor
             client = new DiscordClient(input =>
             {
                 input.LogLevel = LogSeverity.Info;
@@ -27,7 +27,7 @@ namespace NootBot
                 tokenString = token;
             });
 
-            //========//client command prefix creation setup
+//========//client command prefix creation setup
             client.UsingCommands(input =>
             {
                 input.PrefixChar = '>';
@@ -35,7 +35,7 @@ namespace NootBot
                 input.AllowMentionPrefix = true;
             });
 
-            //========//client audio service creation setup
+//========//client audio service creation setup
             client.UsingAudio(input =>
             {
                 input.Mode = AudioMode.Outgoing;
@@ -43,7 +43,7 @@ namespace NootBot
 
             commands = client.GetService<CommandService>();
 
-            //========//reply commands section
+//========//reply commands section
             commands.CreateCommand("kys")
                 .Description("Be mean to the bot and make her feel bad.")
                 .Do(async e =>
@@ -61,7 +61,7 @@ namespace NootBot
                     //sends a message to channel with the given text
                 });
 
-            //========//audio commands
+//========//audio commands
             commands.CreateCommand("playA")
                 .Alias(new string[] { "pA" })
                 .Description("Plays local file a.mp3")
@@ -104,7 +104,7 @@ namespace NootBot
                     //Doesn't disconnect by command yet.
                 });
 
-            //========//event actions or announcements
+//========//event actions or announcements
             client.UserJoined += async (s, e) =>
             {
                 var channel = e.Server.FindChannels("general", ChannelType.Text).FirstOrDefault();
