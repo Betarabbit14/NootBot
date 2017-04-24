@@ -10,7 +10,7 @@ Since the project I'm currently working on is frozen due to classified issues, t
 What is NootBot?
 ---------------------
 A bot generally has a few different purposes in Discord: chat, music, permissions, or intergration.
-I intend to use NootBot mainly as a music bot, but a chat bot might be nessisary for me to learn Discord.Net
+I intend to use NootBot mainly as a music bot, but a chat bot might be necessary for me to learn Discord.Net
 
 ### Currently Learning 
 
