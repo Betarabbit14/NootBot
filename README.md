@@ -1,4 +1,4 @@
-![Alt Text](https://github.com/SMIC-ComputerClub/NootBot/blob/master/noot.jpg)
+![Alt Text](https://github.com/Betarabbit14/NootBot/blob/master/noot.jpg)
 
 # NootBot
 A Discord Bot written in C#. _Trying to use youtube and google API..._
