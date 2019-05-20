@@ -21,4 +21,3 @@ I intend to use NootBot mainly as a music bot, but a chat bot might be necessary
 > 
 > :) Thats it for now
 >
-> ## KMS : ^)
